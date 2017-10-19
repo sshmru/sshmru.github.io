@@ -33,4 +33,11 @@ var Main = createClass({
 preact.render(h(Main), document.body);
 
 
-fetch('https://api.github.com/repos/sshmru/sshmru.github.io/contents/repos').then(res => res.json().then(json => json.forEach(item => document.body.innerHTML += item.name + '<br/>')))
+fetch('https://api.github.com/repos/sshmru/sshmru.github.io/contents/repos')
+    .then(res => {
+        res.json().then(json => {
+            json.forEach(item => {
+                document.body.innerHTML += `<br/><a href="./repos/${item.name}">${item.name}</a>`
+            })
+        })
+    })
